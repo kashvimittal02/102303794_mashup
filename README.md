@@ -168,6 +168,22 @@ Error messages are displayed for invalid inputs.
 - Requires stable internet connection  
 - YouTube rate limits may affect large downloads  
 - Processing time increases with video count  
-- Only publicly available YouTube content can be accessed  
+- Only publicly available YouTube content can be accessed
 
+---
+
+## Output
+
+Final generated output structure:
+
+mashup.zip  
+└── mashup.mp3  
+
+The mashup contains trimmed segments merged sequentially.
+
+---
+
+## Conclusion
+
+The project successfully integrates automated YouTube data retrieval, audio processing techniques, file compression, and web-based service deployment. The system fulfills all assignment requirements and demonstrates practical implementation of Python-based automation and web development.
 The project successfully integrates automated YouTube data retrieval, audio processing techniques, file compression, and web-based service deployment. The system fulfills all assignment requirements and demonstrates practical implementation of Python-based automation and web development.
