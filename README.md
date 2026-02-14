@@ -4,7 +4,7 @@
 
 ## Objective
 
-The objective of this project is to design and implement an automated mashup generation system that downloads multiple songs of a specified singer, extracts a fixed duration from each track, and merges them into a single audio file. The system demonstrates the integration of web scraping, audio processing, file compression, and web-based service development using Python technologies.
+The objective of this project is to design and implement an automated mashup generation system that downloads multiple songs of a specified singer, extracts a fixed duration from each track, merges them into a single audio file, compresses it, and delivers the final output to the user via email using a web-based interface.
 
 ---
 
@@ -12,8 +12,8 @@ The objective of this project is to design and implement an automated mashup gen
 
 The system consists of two main components:
 
-- **Program 1:** Command-line based mashup generator  
-- **Program 2:** Web-based mashup service using Flask  
+- **Program 1:** Command-line based mashup generator.
+- **Program 2:** Web-based mashup service using Flask that generates the mashup and sends the ZIP file to the user via email.  
 
 The application performs the complete pipeline from user input to final output generation.
 
@@ -77,6 +77,18 @@ The web application automatically sends this ZIP file as a downloadable response
 
 ---
 
+### Email Delivery (Web Version)
+
+Using Flask-Mail and Gmail SMTP:
+
+The ZIP file is attached to an email.
+
+Gmail App Password authentication is used.
+
+The mashup is sent to the user’s provided email address.
+
+---
+
 ## System Architecture
 
 User Input  
@@ -93,7 +105,7 @@ Mashup File Generation
 ↓  
 ZIP Creation  
 ↓  
-Download via Web Interface  
+Email Delivery (Flask-Mail + Gmail SMTP)  
 
 ---
 
@@ -104,19 +116,21 @@ Download via Web Interface
 - Audio Processing: pydub  
 - Audio Conversion: FFmpeg  
 - Web Framework: Flask  
+- Email Service: Flask-Mail  
+- Email Validation: email-validator  
 - File Compression: zipfile  
-- Frontend Interface: HTML Form  
+- Frontend Interface: HTML Form   
 
 ---
 
 ## Result Table
 
-| Test Case | Singer | Videos | Duration | Result |
-|------------|---------|---------|-----------|---------|
-| 1 | Sharry Mann | 11 | 30 sec | Success |
-| 2 | Arijit Singh | 12 | 25 sec | Success |
-| 3 | Sharry Mann | 5 | 30 sec | Failed (Invalid video count) |
-| 4 | Sharry Mann | 12 | 10 sec | Failed (Invalid duration) |
+| Test Case | Singer | Videos | Duration | Email Sent | Result |
+|------------|---------|---------|-----------|--------------|---------|
+| 1 | Sharry Mann | 11 | 30 sec | Yes | Success |
+| 2 | Arijit Singh | 12 | 25 sec | Yes | Success |
+| 3 | Sharry Mann | 5 | 30 sec | Yes | Failed (Invalid video count) |
+| 4 | Sharry Mann | 12 | 10 sec | Yes | Failed (Invalid duration) |
 
 ---
 
@@ -163,12 +177,71 @@ Error messages are displayed for invalid inputs.
 
 ---
 
-## Limitations
+## Installation and Setup
 
-- Requires stable internet connection  
-- YouTube rate limits may affect large downloads  
-- Processing time increases with video count  
-- Only publicly available YouTube content can be accessed
+Follow the steps below to set up and run the project locally:
+
+### 1. Clone or Download the Project
+
+Download the project folder and open it in VS Code.
+
+### 2. Create Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+### 3. Activate Virtual Environment
+
+For Windows:
+```bash
+venv\Scripts\activate
+```
+For macOS/Linux:
+```bash
+source venv/bin/activate
+```
+
+### 4. Install Required Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Install FFmpeg (System Dependency)
+
+Download and install FFmpeg from:
+
+https://www.gyan.dev/ffmpeg/builds/
+
+Add the bin folder path to your system environment variables (PATH).
+
+Verify Installation:
+```bash
+ffmpeg -version
+```
+
+### 6. Configure Email (Gmail App Password)
+- Enable 2-Step Verification in your Google account.
+
+- Generate an App Password from:
+  https://myaccount.google.com/apppasswords
+
+- Update the following in app.py:
+```python
+app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
+app.config['MAIL_PASSWORD'] = 'your_16_character_app_password'
+```
+
+### 7. Run the Application
+
+```bash
+python app.py
+```
+
+Open browser and visit:
+```cpp
+http://127.0.0.1:5000
+```
 
 ---
 
@@ -185,5 +258,4 @@ The mashup contains trimmed segments merged sequentially.
 
 ## Conclusion
 
-The project successfully integrates automated YouTube data retrieval, audio processing techniques, file compression, and web-based service deployment. The system fulfills all assignment requirements and demonstrates practical implementation of Python-based automation and web development.
 The project successfully integrates automated YouTube data retrieval, audio processing techniques, file compression, and web-based service deployment. The system fulfills all assignment requirements and demonstrates practical implementation of Python-based automation and web development.
