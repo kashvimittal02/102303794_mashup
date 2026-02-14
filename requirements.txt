@@ -1,3 +1,5 @@
 Flask==3.0.2
+Flask-Mail==0.9.1
+email-validator==2.1.1
 yt-dlp==2024.3.10
 pydub==0.25.1
