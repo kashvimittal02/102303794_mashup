@@ -246,8 +246,11 @@ http://127.0.0.1:5000
 ---
 
 ## Output
+### Output Webpage:
+<img width="472" height="290" alt="output_webpage" src="https://github.com/user-attachments/assets/4e4b86ac-7065-449f-ae03-5fc2bd86273e" />
 
-Final generated output structure:
+### Final generated output structure via email:
+<img width="668" height="361" alt="image" src="https://github.com/user-attachments/assets/02904986-8c6c-4010-afdf-d248738fd002" />
 
 mashup.zip  
 └── mashup.mp3  
