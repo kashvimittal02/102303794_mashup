@@ -1,0 +1,6 @@
+venv
+__pycache__
+audios
+mashup.mp3
+mashup.zip
+.git
