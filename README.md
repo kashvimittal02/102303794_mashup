@@ -8,12 +8,20 @@ The objective of this project is to design and implement an automated mashup gen
 
 ---
 
+## Live Deployment
+
+The application is deployed on Render and can be accessed at:
+
+https://one02303794-mashup.onrender.com
+
+---
+
 ## System Description
 
 The system consists of two main components:
 
 - **Program 1:** Command-line based mashup generator.
-- **Program 2:** Web-based mashup service using Flask that generates the mashup and sends the ZIP file to the user via email.  
+- **Program 2:** Web-based mashup service using Flask, deployed on Render using Docker, which generates the mashup and sends the ZIP file to the user via email.  
 
 The application performs the complete pipeline from user input to final output generation.
 
@@ -106,6 +114,8 @@ Mashup File Generation
 ZIP Creation  
 ↓  
 Email Delivery (Flask-Mail + Gmail SMTP)  
+↓  
+Cloud Deployment on Render    
 
 ---
 
@@ -119,7 +129,11 @@ Email Delivery (Flask-Mail + Gmail SMTP)
 - Email Service: Flask-Mail  
 - Email Validation: email-validator  
 - File Compression: zipfile  
-- Frontend Interface: HTML Form   
+- Frontend Interface: HTML Form
+- Deployment Platform: Render  
+- Containerization: Docker  
+- Production Server: Gunicorn  
+- Environment Variable Configuration for Secure Credentials  
 
 ---
 
@@ -177,74 +191,6 @@ Error messages are displayed for invalid inputs.
 
 ---
 
-## Installation and Setup
-
-Follow the steps below to set up and run the project locally:
-
-### 1. Clone or Download the Project
-
-Download the project folder and open it in VS Code.
-
-### 2. Create Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-### 3. Activate Virtual Environment
-
-For Windows:
-```bash
-venv\Scripts\activate
-```
-For macOS/Linux:
-```bash
-source venv/bin/activate
-```
-
-### 4. Install Required Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 5. Install FFmpeg (System Dependency)
-
-Download and install FFmpeg from:
-
-https://www.gyan.dev/ffmpeg/builds/
-
-Add the bin folder path to your system environment variables (PATH).
-
-Verify Installation:
-```bash
-ffmpeg -version
-```
-
-### 6. Configure Email (Gmail App Password)
-- Enable 2-Step Verification in your Google account.
-
-- Generate an App Password from:
-  https://myaccount.google.com/apppasswords
-
-- Update the following in app.py:
-```python
-app.config['MAIL_USERNAME'] = 'your_email@gmail.com'
-app.config['MAIL_PASSWORD'] = 'your_16_character_app_password'
-```
-
-### 7. Run the Application
-
-```bash
-python app.py
-```
-
-Open browser and visit:
-```cpp
-http://127.0.0.1:5000
-```
-
----
-
 ## Output
 ### Output Webpage:
 <img width="472" height="290" alt="output_webpage" src="https://github.com/user-attachments/assets/4e4b86ac-7065-449f-ae03-5fc2bd86273e" />
@@ -256,6 +202,24 @@ mashup.zip
 └── mashup.mp3  
 
 The mashup contains trimmed segments merged sequentially.
+
+---
+
+## Cloud Deployment
+
+The application is deployed using Docker on Render.
+
+### Deployment Steps:
+
+1. Dockerfile was created to install Python, dependencies, and FFmpeg.
+2. Gunicorn is used as the production server.
+3. Environment variables are configured in Render dashboard:
+   - MAIL_USERNAME
+   - MAIL_PASSWORD
+4. The service runs on port 10000 as required by Render.
+5. The application is accessible via the public Render URL.
+
+The deployment allows remote access to the mashup service through a web interface.
 
 ---
 
