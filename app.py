@@ -8,8 +8,8 @@ from mashup import download_videos, trim_and_merge
 app = Flask(__name__)
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = os.environ.get("kashvi027@gmail.com")
-app.config['MAIL_PASSWORD'] = os.environ.get("ndgkpbnkpvvrvkgb")
+app.config['MAIL_USERNAME'] = os.environ.get("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = os.environ.get("MAIL_PASSWORD")
 app.config['MAIL_USE_TLS'] = True
 
 mail = Mail(app)
@@ -74,3 +74,4 @@ def index():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
+
